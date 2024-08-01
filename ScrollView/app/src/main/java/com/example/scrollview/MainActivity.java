@@ -1,9 +1,6 @@
-package com.example.intentactivity;
+package com.example.scrollview;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +9,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-
-    EditText etbarang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +20,5 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        load();
-
-    }
-
-    public void load(){
-        etbarang = findViewById(R.id.etBarang);
-    }
-
-    public void btnBarang(View view) {
-        String barang = etbarang.getText().toString();
-        Intent intent = new Intent(this, Barang.class);
-        intent.putExtra("ISI",barang);
-        startActivity(intent);
-
     }
 }
