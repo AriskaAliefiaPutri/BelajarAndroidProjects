@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         load();
         isiData();
     }
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         siswaList.add(new Siswa("Xavierra", "Surabaya"));
         siswaList.add(new Siswa("Yesaya", "Surabaya"));
 
-        adapter =new SiswaAdapter(this,siswaList);
+        adapter = new SiswaAdapter(this,siswaList);
         recyclerView.setAdapter(adapter);
     }
 }
