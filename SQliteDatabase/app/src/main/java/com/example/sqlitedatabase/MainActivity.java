@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     List<Barang> databarang = new ArrayList<Barang>();
     BarangAdapter adapter;
     RecyclerView rcvBarang;
+    String idbarang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     pesan("insert Gagal");
                 }
             }else {
-                pesan("update");
+                pesan("UPDATE");
             }
         }
 
@@ -112,5 +113,16 @@ public class MainActivity extends AppCompatActivity {
         }else {
             pesan("Data Kosong");
         }
+        cursor.close();
+    }
+
+    public void deleteData(String id) {
+        idbarang = id;
+        String sql = "DELETE FROM tblbarang WHERE idbarang="+idbarang+";";
+    }
+
+    public void selectUpdate(String id) {
+        idbarang = id;
+        String sql = "UPDATE FROM tblbarang WHERE idbarang="+idbarang+";";
     }
 }

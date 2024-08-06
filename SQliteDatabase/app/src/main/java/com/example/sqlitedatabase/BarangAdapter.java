@@ -2,9 +2,12 @@ package com.example.sqlitedatabase;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +36,32 @@ public class BarangAdapter extends RecyclerView.Adapter <BarangAdapter.VielHolde
         vielHolder.tvBarang.setText(barangList.get(i).getBarang());
         vielHolder.tvStok.setText(barangList.get(i).getStok());
         vielHolder.tvHarga.setText(barangList.get(i).getHarga());
+
+        vielHolder.tvMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PopupMenu popupMenu =new PopupMenu(context, vielHolder.tvMenu);
+                popupMenu.inflate(R.menu.menu_item);
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        int menuItemId = menuItem.getItemId();
+                        if (menuItemId == R.id.ubah) {
+                            Toast.makeText(context, "UBAH", Toast.LENGTH_SHORT).show();
+                            ((MainActivity)context).selectUpdate(barangList.get(i).getIdbbarang());
+                        } else {
+                            Toast.makeText(context,"HAPUS", Toast.LENGTH_SHORT ).show();
+                            ((MainActivity)context).deleteData(barangList.get(i).getIdbbarang());
+                        }
+                        return false;
+                    }
+                });
+
+                popupMenu.show();
+            }
+        });
     }
 
     @Override
