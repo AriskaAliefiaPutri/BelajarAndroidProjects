@@ -1,6 +1,7 @@
 package com.example.sqlitedatabase;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -22,13 +23,16 @@ public class BarangAdapter extends RecyclerView.Adapter <BarangAdapter.VielHolde
 
     @NonNull
     @Override
-    public VielHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public VielHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_barang,viewGroup,false);
+        return new VielHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VielHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull VielHolder vielHolder, int i) {
+        vielHolder.tvBarang.setText(barangList.get(i).getBarang());
+        vielHolder.tvStok.setText(barangList.get(i).getStok());
+        vielHolder.tvHarga.setText(barangList.get(i).getHarga());
     }
 
     @Override
