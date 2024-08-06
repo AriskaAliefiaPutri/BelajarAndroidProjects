@@ -1,6 +1,10 @@
 package com.example.sqlitedatabase;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     Database db;
+    EditText etBarang, etStock, etHarga;
+    TextView tvPilihan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +33,41 @@ public class MainActivity extends AppCompatActivity {
 
     public void load() {
         db = new Database(this);
-
         db.buatTable();
+
+        etBarang = findViewById(R.id.etBarang);
+        etStock = findViewById(R.id.etStock);
+        etHarga = findViewById(R.id.etHarga);
+        tvPilihan = findViewById(R.id.tvPilihan);
+
     }
 
+    public void simpan (View v) {
+        String barang = etBarang.getText().toString();
+        String stock = etStock.getText().toString();
+        String harga = etHarga.getText().toString();
+        String pilihan = tvPilihan.getText().toString();
+
+        if (barang.isEmpty() || stock.isEmpty() || harga.isEmpty() ) {
+            pesan("Data Kosong");
+        }else {
+            if (pilihan.equals("insert")) {
+                String sql = "INSERT INTO tblbarang (barang,stok,harga) VALUES ('"+barang+"',"+stock+","+harga+")";
+                db.runSQL(sql);
+                pesan("insert berhasil");
+            }else {
+                pesan("update");
+            }
+        }
+
+        etBarang.setText("");
+        etStock.setText("");
+        etHarga.setText("");
+        tvPilihan.setText("insert");
+
+    }
+
+    public void pesan (String isi ) {
+        Toast.makeText(this, isi, Toast.LENGTH_SHORT).show();
+    }
 }
