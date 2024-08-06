@@ -56,22 +56,57 @@ public class MainActivity extends AppCompatActivity {
         }else{
 
             if (pilihan.equals("Celcius To Reamur")){
-                cToR();
+                CtoR();
             }
 
             if (pilihan.equals("Celcius To Fahrenheit")){
-                cToF();
+                CtoF();
+            }
+
+            if (pilihan.equals("Celcius To Kelvin")){
+                CtoK();
+            }
+
+            if (pilihan.equals("Reamur To Celcius")){
+                RtoC();
+            }
+
+            if (pilihan.equals("Reamur To Fahrenheit")){
+                RtoF();
             }
         }
 
 
     }
 
-    public void cToR (){
+    public void CtoR (){
         double suhu = Double.parseDouble(etNilai.getText().toString());
         double hasil = (4.0/5.0) * suhu;
-
         tvHasil.setText(hasil +"");
+    }
+
+    public void CtoF (){
+        double suhu = Double.parseDouble(etNilai.getText().toString());
+        double hasil = (9.0/5.0 * suhu) + 32.0;
+        tvHasil.setText(hasil+"");
+    }
+
+    public void CtoK (){
+        double suhu = Double.parseDouble(etNilai.getText().toString());
+        double hasil = suhu + 273.0;
+        tvHasil.setText(hasil+"");
+    }
+
+    public void RtoC (){
+        double suhu = Double.parseDouble(etNilai.getText().toString());
+        double hasil = 5.0/4.0 * suhu;
+        tvHasil.setText(hasil+"");
+    }
+
+    public void RtoF (){
+        double suhu = Double.parseDouble(etNilai.getText().toString());
+        double hasil = (9.0/4.0 * suhu) + 32.0;
+        tvHasil.setText(hasil+"");
     }
 
     public void cToF(){

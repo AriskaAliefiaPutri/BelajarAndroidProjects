@@ -20,22 +20,23 @@ public class Database extends SQLiteOpenHelper {
 
     boolean runSQL (String sql) {
         try {
-
             db.execSQL(sql);
             return true;
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     public void buatTable() {
-        String tblbarang = "CREATE TABLE \"tblbarang\" (n" +
-                "\t\"idbarang\"\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+        String tblbarang = "CREATE TABLE \"tblbarang\" (\n" +
+                "\t\"idbarang\"\tINTEGER,\n" +
                 "\t\"barang\"\tTEXT,\n" +
                 "\t\"stok\"\tREAL,\n" +
                 "\t\"harga\"\tREAL,\n" +
+                "\tPRIMARY KEY(\"idbarang\" AUTOINCREMENT)\n" +
                 ");";
+
 
         runSQL(tblbarang);
 

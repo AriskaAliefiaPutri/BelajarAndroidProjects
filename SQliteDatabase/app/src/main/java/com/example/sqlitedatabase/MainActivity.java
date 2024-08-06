@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     Database db;
-    EditText etBarang, etStock, etHarga;
+    EditText etBarang, etStok, etHarga;
     TextView tvPilihan;
 
     @Override
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         db.buatTable();
 
         etBarang = findViewById(R.id.etBarang);
-        etStock = findViewById(R.id.etStock);
+        etStok = findViewById(R.id.etStok);
         etHarga = findViewById(R.id.etHarga);
         tvPilihan = findViewById(R.id.tvPilihan);
 
@@ -44,24 +44,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void simpan (View v) {
         String barang = etBarang.getText().toString();
-        String stock = etStock.getText().toString();
+        String stok = etStok.getText().toString();
         String harga = etHarga.getText().toString();
         String pilihan = tvPilihan.getText().toString();
 
-        if (barang.isEmpty() || stock.isEmpty() || harga.isEmpty() ) {
+        if (barang.isEmpty() || stok.isEmpty() || harga.isEmpty() ) {
             pesan("Data Kosong");
         }else {
             if (pilihan.equals("insert")) {
-                String sql = "INSERT INTO tblbarang (barang,stok,harga) VALUES ('"+barang+"',"+stock+","+harga+")";
-                db.runSQL(sql);
-                pesan("insert berhasil");
+                String sql = "INSERT INTO tblbarang (barang,stok,harga) VALUES ('"+barang+"', "+stok+", "+harga+")";
+                pesan(sql);
+                if (db.runSQL(sql)){
+                    pesan("insert Berhasil");
+                }else {
+                    pesan("insert Gagal");
+                }
             }else {
                 pesan("update");
             }
         }
 
         etBarang.setText("");
-        etStock.setText("");
+        etStok.setText("");
         etHarga.setText("");
         tvPilihan.setText("insert");
 
