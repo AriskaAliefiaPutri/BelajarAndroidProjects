@@ -124,5 +124,13 @@ public class MainActivity extends AppCompatActivity {
     public void selectUpdate(String id) {
         idbarang = id;
         String sql = "UPDATE FROM tblbarang WHERE idbarang="+idbarang+";";
+        if (db.runSQL(sql)){
+            pesan("Data Sudah DIhapus");
+            selectData();
+        }else {
+            pesan("Data Tidak Bisa Dihapus");
+        }
     }
+
+
 }
