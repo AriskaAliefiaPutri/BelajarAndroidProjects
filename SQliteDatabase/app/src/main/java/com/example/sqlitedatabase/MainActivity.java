@@ -117,13 +117,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deleteData(String id) {
-        idbarang = id;
+        String idbarang = id;
         String sql = "DELETE FROM tblbarang WHERE idbarang="+idbarang+";";
-    }
-
-    public void selectUpdate(String id) {
-        idbarang = id;
-        String sql = "UPDATE FROM tblbarang WHERE idbarang="+idbarang+";";
         if (db.runSQL(sql)){
             pesan("Data Sudah DIhapus");
             selectData();
@@ -132,5 +127,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void selectUpdate(String id){
+        idbarang = id;
+        String sql = "SELECT * FROM tblbarang WHERE idbarang="+id+" ;";
+        Cursor cursor = db.select(sql);
+        cursor.moveToNext();
+
+        etBarang.setText(cursor.getString(cursor.getColumnIndex("barang")));
+        etStok.setText(cursor.getString(cursor.getColumnIndex("stok")));
+        etHarga.setText(cursor.getString(cursor.getColumnIndex("harga")));
+
+        tvPilihan.setText("update");
+    }
 
 }
